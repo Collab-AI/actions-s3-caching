@@ -4,10 +4,7 @@ export enum Inputs {
     RestoreKeys = "restore-keys",
     UploadChunkSize = "upload-chunk-size",
     AWSS3Bucket = "aws-s3-bucket",
-    AWSRegion = "aws-region",
-    AWSEndpoint = "aws-endpoint",
-    AWSS3BucketEndpoint = "aws-s3-bucket-endpoint",
-    AWSS3ForcePathStyle = "aws-s3-force-path-style"
+    AWSRegion = "aws-region"
 }
 
 export enum Outputs {

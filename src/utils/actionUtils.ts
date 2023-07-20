@@ -92,10 +92,7 @@ export function getInputS3ClientConfig(): S3ClientConfig | undefined {
 
     const s3config = {
         ...credentials,
-        region: core.getInput(Inputs.AWSRegion),
-        endpoint: core.getInput(Inputs.AWSEndpoint),
-        bucketEndpoint: core.getBooleanInput(Inputs.AWSS3BucketEndpoint),
-        forcePathStyle: core.getBooleanInput(Inputs.AWSS3ForcePathStyle)
+        region: core.getInput(Inputs.AWSRegion)
     } as S3ClientConfig;
 
     core.debug("Enable S3 backend mode.");
