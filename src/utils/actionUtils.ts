@@ -7,6 +7,7 @@ import {
 } from "@aws-sdk/client-s3";
 import { fromTokenFile } from "@aws-sdk/credential-provider-web-identity";
 import { getDefaultRoleAssumerWithWebIdentity } from "@aws-sdk/client-sts";
+const { fromNodeProviderChain } = require("@aws-sdk/credential-providers");
 
 export function isGhes(): boolean {
     const ghUrl = new URL(
@@ -87,7 +88,10 @@ export function getInputS3ClientConfig(): S3ClientConfig | undefined {
         return undefined;
     }
 
+    const credentials = fromNodeProviderChain();
+
     const s3config = {
+        ...credentials,
         region: core.getInput(Inputs.AWSRegion),
         endpoint: core.getInput(Inputs.AWSEndpoint),
         bucketEndpoint: core.getBooleanInput(Inputs.AWSS3BucketEndpoint),
