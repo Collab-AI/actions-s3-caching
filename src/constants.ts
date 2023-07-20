@@ -4,8 +4,6 @@ export enum Inputs {
     RestoreKeys = "restore-keys",
     UploadChunkSize = "upload-chunk-size",
     AWSS3Bucket = "aws-s3-bucket",
-    AWSAccessKeyId = "aws-access-key-id",
-    AWSSecretAccessKey = "aws-secret-access-key",
     AWSRegion = "aws-region",
     AWSEndpoint = "aws-endpoint",
     AWSS3BucketEndpoint = "aws-s3-bucket-endpoint",

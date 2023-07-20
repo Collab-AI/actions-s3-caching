@@ -1,6 +1,10 @@
 import * as core from "@actions/core";
 import { Inputs, Outputs, RefKey, State } from "../constants";
-import { CommonPrefix, InputSerialization, S3ClientConfig } from "@aws-sdk/client-s3";
+import {
+    CommonPrefix,
+    InputSerialization,
+    S3ClientConfig
+} from "@aws-sdk/client-s3";
 import { fromTokenFile } from "@aws-sdk/credential-provider-web-identity";
 import { getDefaultRoleAssumerWithWebIdentity } from "@aws-sdk/client-sts";
 
@@ -78,31 +82,19 @@ export function getInputAsInt(
 }
 
 export function getInputS3ClientConfig(): S3ClientConfig | undefined {
-    const s3BucketName = core.getInput(Inputs.AWSS3Bucket)
+    const s3BucketName = core.getInput(Inputs.AWSS3Bucket);
     if (!s3BucketName) {
-        return undefined
-    }
-
-    const credentials = core.getInput(Inputs.AWSAccessKeyId) ? {
-        credentials: {
-          accessKeyId: core.getInput(Inputs.AWSAccessKeyId),
-          secretAccessKey: core.getInput(Inputs.AWSSecretAccessKey)
-        }
-    } : {
-        credentials: fromTokenFile({
-          roleAssumerWithWebIdentity: getDefaultRoleAssumerWithWebIdentity(),
-        })
+        return undefined;
     }
 
     const s3config = {
-        ...credentials,
         region: core.getInput(Inputs.AWSRegion),
         endpoint: core.getInput(Inputs.AWSEndpoint),
         bucketEndpoint: core.getBooleanInput(Inputs.AWSS3BucketEndpoint),
-        forcePathStyle: core.getBooleanInput(Inputs.AWSS3ForcePathStyle),
-    } as S3ClientConfig
+        forcePathStyle: core.getBooleanInput(Inputs.AWSS3ForcePathStyle)
+    } as S3ClientConfig;
 
-    core.debug('Enable S3 backend mode.')
+    core.debug("Enable S3 backend mode.");
 
-    return s3config
+    return s3config;
 }
