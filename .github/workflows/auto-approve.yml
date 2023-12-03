@@ -1,0 +1,19 @@
+name: Auto approve
+on: pull_request
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+    - uses: hmarr/auto-approve-action@v2
+      if: github.actor == 'audreyrelay'
+          || github.actor == 'daniel-relay'
+          || github.actor == 'luis-relay'
+          || github.actor == 'matthijs-relay'
+          || github.actor == 'michaelcollabai'
+          || github.actor == 'scottcollabai'
+          || github.actor == 'vincecollabai'
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
